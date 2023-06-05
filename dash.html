@@ -504,7 +504,7 @@ author: aghassemi
       <!-- The `amp-carousel` supports also a more traditional carousel mode.   -->
       <div class="recommendations">
         <h3>Recommendations</h3>
-        <amp-carousel width="auto" height="400" layout="fixed-height" type="carousel">
+        <amp-carousel width="auto" height="1200" layout="fixed-height" type="carousel">
           <a href="#" role="listitem">
             <amp-img width="640" height="426" layout="responsive" alt="Apple" src="/static/samples/img/product1_640x426.jpg"></amp-img>
             <p class="name">Apple</p>
@@ -559,45 +559,5 @@ author: aghassemi
           </template>
         </amp-list>
       </div>
-      <!--
-        ## Autosuggest configuration
-      -->
-      <!-- The initial state and helper variables for the product autosuggest are configured by amp-state. -->
-    <amp-state id="autosuggest">
-        <script type="application/json">
-        {
-          "endpoint": "/documentation/examples/api/products-autosuggest?q=",
-          "emptyAndInitialTemplateJson": [{
-            "query": "",
-            "results": []
-          }],
-          "showDropdown":false,
-          "query":""
-        }
-        </script>
-    </amp-state>
-      <!--
-        ## User analytics
-      -->
-      <!-- Analytics must be configured in the body. Here we use Google Analytics to track pageviews. -->
-      <amp-analytics type="googleanalytics">
-        <script type="application/json">
-{
-                    "vars": {
-                        "account": "UA-80609902-1"
-                    },
-                    "triggers": {
-                        "default pageview": {
-                            "on": "visible",
-                            "request": "pageview",
-                            "vars": {
-                                "title": "{{title}}"
-                            }
-                        }
-                    }
-                }
-
-        </script>
-      </amp-analytics>
     </body>
   </html>
