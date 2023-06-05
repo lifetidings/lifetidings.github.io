@@ -368,15 +368,6 @@ author: aghassemi
       </noscript>
     </head>
     <body>
-      <!-- ## Navigation -->
-      <!-- Use the [amp-sidebar](/documentation/components/amp-sidebar) component to give customers the chance to quickly jump to any of your product categories -->
-      <amp-sidebar id="drawermenu" layout="nodisplay">
-        <a href="/documentation/examples/e-commerce/product_browse_page">Products</a>
-        <hr/>
-        <a href="#">Fruit</a>
-        <a href="#">Vegetable</a>
-        <a href="#">More</a>
-      </amp-sidebar>
       <!-- ## Header with search -->
       <!-- AMP supports forms, which means you can directly integrate a product search into your AMPs. Here we implemented autocomplete, try searching for "Apple" and you should be able to select "Apple". Take a look at [autosuggest sample](/documentation/examples/interactivity-dynamic-content/autosuggest_form/) for more details how autosuggest is implemented.
 
@@ -510,117 +501,6 @@ author: aghassemi
       <!-- We implemented filtering and ordering by combining `amp-bind` and `amp-list`. For filtering, we update, via `amp-bind`, the `src` of `amp-list` based on the color selection.
 
       Similarly, we use a select option to allow the user to sort products based on price and we then modify the `src` url of `amp-list`. -->
-      <div id="main-wrap">
-        <div class="refine">
-          <h3>Filter results</h3>
-          <h4>Color</h4>
-            <div><label><input type="radio" id="yellow" name="colorFilter" value="Yellow" on="change:AMP.setState({
-              products: {
-              searchColor: event.checked == true ? 'yellow' : '',
-              listSrc: '/documentation/examples/api/products?searchProduct='+ products.searchProduct +'&sort='+ products.sortChoiceValue +'&searchColor='+ (event.checked == true ? 'yellow' : '') +'&_=RANDOM'
-              }
-              })"> yellow </label></div>
-              <div><label><input type="radio" id="orange" name="colorFilter" value="Orange" on="change:AMP.setState({
-              products: {
-              searchColor: event.checked == true ? 'orange' : '',
-              listSrc: '/documentation/examples/api/products?searchProduct='+ products.searchProduct +'&sort='+ products.sortChoiceValue +'&searchColor='+ (event.checked == true ? 'orange' : '') +'&_=RANDOM'
-              }
-              })"> orange </label></div>
-
-              <div><label><input type="radio" id="green" name="colorFilter"  value="Green" on="change:AMP.setState({
-              products: {
-              searchColor: event.checked == true ? 'green' : '',
-              listSrc: '/documentation/examples/api/products?searchProduct='+ products.searchProduct +'&sort='+ products.sortChoiceValue +'&searchColor='+ (event.checked == true ? 'green' : '') +'&_=RANDOM'
-              }
-              })"> green </label></div>
-              <div><label><input type="radio" id="all" name="colorFilter"  value="all" on="change:AMP.setState({
-              products: {
-              searchColor: event.checked == true ? 'all' : '',
-              listSrc: '/documentation/examples/api/products?searchProduct='+ products.searchProduct +'&sort='+ products.sortChoiceValue +'&searchColor='+ (event.checked == true ? 'all' : '') +'&_=RANDOM'
-              }
-              })"> all </label></div>
-        </div>
-        <div class="content">
-          <div id="info-wrap">
-            <div>
-              <label for="sort">Sort</label>
-              <select id="sort" on="change:AMP.setState({
-              products: {
-              sortChoiceValue: event.value,
-              listSrc: '/documentation/examples/api/products?searchProduct='+products.searchProduct+'&sort='+event.value+'&searchColor='+products.searchColor+'&_=RANDOM'
-              }
-              })">
-                <option value="price-descendent">Price high to low
-                </option>
-                <option value="price-ascendent">Price low to high
-                </option>
-              </select>
-            </div>
-            <button class="filter-mobile" on="tap:filter-lightbox">
-              Filter
-            </button>
-          </div>
-          <amp-list width="auto"
-                    height="600"
-                    layout="fixed-height"
-                    src="/documentation/examples/api/products?sort=price-descendent&searchColor=all&_=RANDOM'"
-                    [src]="products.listSrc"
-                    binding="no"
-                    class="grid"
-                    data-amp-replace="RANDOM">
-            <template type="amp-mustache">
-              <a class="products" href="#">
-                <amp-img width="150"
-                         height="100"
-                         alt="{{name}}"
-                         src="{{img}}"></amp-img>
-                       <p class="name">{{name}}</p>
-                       <p class="star">{{{stars}}}</p>
-                       <p class="price">${{price}}</p>
-              </a>
-            </template>
-          </amp-list>
-        </div>
-      </div>
-      <!-- We implemented an additional lightbox for the filter section on mobile. -->
-      <amp-lightbox id="filter-lightbox" layout="nodisplay">
-        <div class="filter-section">
-          <h3>Filter results</h3>
-          <h4>Color</h4>
-          <div>
-            <label> yellow <input type="radio" name="colorFilter" value="Yellow" on="change:AMP.setState({
-              products: {
-              searchColor: event.checked == true ? 'yellow' : '',
-              listSrc: '/documentation/examples/api/products?searchProduct='+ products.searchProduct +'&sort='+ products.sortChoiceValue +'&searchColor='+ (event.checked == true ? 'yellow' : '') +'&_=RANDOM'
-              }
-              }), filter-lightbox.close"></label>
-            <label> orange <input type="radio" name="colorFilter" value="Orange" on="change:AMP.setState({
-              products: {
-              searchColor: event.checked == true ? 'orange' : '',
-              listSrc: '/documentation/examples/api/products?searchProduct='+ products.searchProduct +'&sort='+ products.sortChoiceValue +'&searchColor='+ (event.checked == true ? 'orange' : '') +'&_=RANDOM'
-              }
-              }), filter-lightbox.close"></label>
-            <label> green <input type="radio" name="colorFilter" value="Green" on="change:AMP.setState({
-              products: {
-              searchColor: event.checked == true ? 'green' : '',
-              listSrc: '/documentation/examples/api/products?searchProduct='+ products.searchProduct +'&sort='+ products.sortChoiceValue +'&searchColor='+ (event.checked == true ? 'green' : '') +'&_=RANDOM'
-              }
-              }), filter-lightbox.close"> </label>
-            <label> all <input type="radio" name="colorFilter" value="all" on="change:AMP.setState({
-              products: {
-              searchColor: event.checked == true ? 'all' : '',
-              listSrc: '/documentation/examples/api/products?searchProduct='+ products.searchProduct +'&sort='+ products.sortChoiceValue +'&searchColor='+ (event.checked == true ? 'all' : '') +'&_=RANDOM'
-              }
-              }), filter-lightbox.close"> </label>
-              </div>
-          <div>
-            <a on="tap:filter-lightbox.close" role="button" tabindex="0">
-              Close
-            </a>
-          </div>
-        </div>
-      </amp-lightbox>
-      <!-- ## Offers & highlights -->
       <!-- The `amp-carousel` supports also a more traditional carousel mode.   -->
       <div class="recommendations">
         <h3>Recommendations</h3>
